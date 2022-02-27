@@ -7,12 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddStockButtonComponent implements OnInit {
 
-  constructor() { }
+  private isModalOpen: boolean;
+  constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isModalOpen = false;
+  }
 
   addStockItem () {
-    console.log("Working");
+    console.log("Add stock item");
+  }
+
+  openModal() {
+    console.log("open modal, this.isOpen: ", this.isModalOpen);
+    this.isModalOpen = true;
+    console.log("open modal, this.isOpen: ", this.isModalOpen);
+
+  }
+  closeModal() {
+    console.log("close modal");
+    this.isModalOpen = false;
+    console.log(this.isModalOpen);
   }
 
 }
