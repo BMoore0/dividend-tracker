@@ -1,0 +1,7 @@
+{
+  "name": "dividend-tracker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
