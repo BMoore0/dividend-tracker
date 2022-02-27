@@ -1,3 +1,13 @@
+:host{
+  --ion-background-color: rgb(0, 0, 0);
+  --ion-color: white;
+}
+
+.title {
+  color: white;
+  text-align: center;
+}
+
 #container {
   text-align: center;
 
@@ -6,6 +16,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  
 }
 
 #container strong {
