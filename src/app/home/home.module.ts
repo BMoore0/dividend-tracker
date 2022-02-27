@@ -7,6 +7,7 @@ import { AddStockButtonComponent } from '../components/add-stock-button/add-stoc
 import { StockItemComponent } from '../components/stock-item/stock-item.component';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { HeaderComponent } from '../components/header/header.component';
 
 
 @NgModule({
@@ -16,6 +17,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, AddStockButtonComponent, StockItemComponent]
+  declarations: [HomePage, AddStockButtonComponent, StockItemComponent, HeaderComponent]
 })
 export class HomePageModule {}
