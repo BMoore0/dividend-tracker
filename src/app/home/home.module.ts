@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { AddStockButtonComponent } from '../components/add-stock-button/add-stock-button.component';
+import { StockItemComponent } from '../components/stock-item/stock-item.component';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -15,6 +16,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, AddStockButtonComponent]
+  declarations: [HomePage, AddStockButtonComponent, StockItemComponent]
 })
 export class HomePageModule {}

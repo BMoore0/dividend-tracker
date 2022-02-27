@@ -3,6 +3,14 @@
   --ion-color: white;
 }
 
+ion-title.title-large {
+  font-size: 30px;
+  border-bottom: 2px solid rgb(255, 255, 255);
+  padding-bottom: 5px;
+  width: 100%;
+  display: block;
+}
+
 .title {
   color: white;
   text-align: center;
