@@ -1,25 +1,27 @@
 <div class="container">
   <ion-item color="dark" class="stock-item">
-    <ion-label>
-      Stock: 
+    <ion-label> 
       {{ticker}}
     </ion-label>
 
     <ion-label>
-      Shares: {{shareCount}}
-    </ion-label>
-
-    <ion-label *ngIf="quarterlyReturnExists">
-      QTR: 
-      {{qtrReturn}}
-    </ion-label>
-
-    <ion-label *ngIf="monthlyReturnExists">
-     MTH: {{mnthReturn}}
+      #{{shareCount}}
     </ion-label>
 
     <ion-label>
-      YR: {{yrReturn}}
+      <div *ngIf="monthlyReturnExists">
+        ${{mnthReturn}}
+      </div>
+     </ion-label>
+
+    <ion-label>
+      <div *ngIf="quarterlyReturnExists">
+        ${{qtrReturn}}
+      </div>
+    </ion-label>
+
+    <ion-label>
+      ${{yrReturn}}
     </ion-label>
   </ion-item>
   <!-- {{ticker}} {{shareCount}} {{qtrReturn}} {{yrReturn}} -->

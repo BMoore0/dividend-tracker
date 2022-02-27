@@ -10,9 +10,9 @@ export class StockItemComponent implements OnInit {
 
   @Input('ticker') ticker = 'AAPL';
   @Input('shareCount') shareCount = '50';
-  @Input('qtrReturn') qtrReturn = '$130';
+  @Input('qtrReturn') qtrReturn = '130';
   @Input('mnthReturn') mnthReturn = '';
-  @Input('yrReturn') yrReturn = '$520';
+  @Input('yrReturn') yrReturn = '520';
 
   private monthlyReturnExists;
   private quarterlyReturnExists;
