@@ -16,6 +16,7 @@ export class AddStockButtonComponent implements OnInit {
 
   addStockItem () {
     console.log("Add stock item");
+    this.isModalOpen = false;
   }
 
   openModal() {
