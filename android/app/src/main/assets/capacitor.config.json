@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "dividend-tracker",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
