@@ -2,14 +2,17 @@
   <ion-button color="success" size="medium" expand="block" class="add-button" shape = "round" (click)="openModal()">
     <ion-icon name="add-circle-sharp"></ion-icon>
 
-    <ion-modal [isOpen] = "isModalOpen" id="addStockModal">
+    <ion-modal [isOpen]="isModalOpen" id="addStockModal">
       <ng-template>
         <ion-content>
+          
+          <ion-item class="modal-input">
+            <ion-input type="text" (change)="validateInput()" required="true" maxlength="5" [(ngModel)]="stockSymbol" placeholder="Stock symbol"></ion-input>
+          </ion-item>
 
-          <ion-input type="text" required="true" placeholder="Stock symbol"></ion-input>
-          <ion-input type="number" required="true" placeholder="Number of shares"></ion-input>
-
-
+          <ion-item class="modal-input">
+            <ion-input type="number" required="true" (change)="validateInput()" [(ngModel)]="shareCount" max="5" min="1" placeholder="Number of shares"></ion-input>
+          </ion-item>
 
           <div class="modal-buttons">
             <ion-button color="danger" (click)="closeModal()">Cancel</ion-button>
