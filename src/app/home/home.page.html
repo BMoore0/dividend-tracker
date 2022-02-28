@@ -5,17 +5,17 @@
       </ion-title>
     </ion-toolbar>
   
-      <ion-toolbar>
-        <header class="top"></header>
-      </ion-toolbar>
-  
+    <header class="top"></header>
+      
     <div id="container">
       <div class="stockList">
         <div *ngFor="let stock of stocks; index as i">
           <stock-item [stockInfo] = "stock"></stock-item>
         </div>
       </div>
+
       <add-stock-button (newStockItem)="addStockItem($event)"></add-stock-button>
+      <total-amount [stocks]="stocks"></total-amount>
     </div>
 </div>
 

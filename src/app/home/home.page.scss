@@ -13,10 +13,13 @@ ion-title.title-large {
 
 .title {
   text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
 }
 
 .top {
   top: 0%;
+  margin-bottom: .5px;
 }
 
 #container {
@@ -52,6 +55,7 @@ ion-title.title-large {
 .stockList {
     max-height: 500px;
     overflow-y: scroll;
+    background-color: #00ff65;
 }
 
 .body-content {

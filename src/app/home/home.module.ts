@@ -8,6 +8,7 @@ import { StockItemComponent } from '../components/stock-item/stock-item.componen
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HeaderComponent } from '../components/header/header.component';
+import { TotalAmountComponent } from '../components/total-amount/total-amount.component';
 
 
 @NgModule({
@@ -17,6 +18,6 @@ import { HeaderComponent } from '../components/header/header.component';
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, AddStockButtonComponent, StockItemComponent, HeaderComponent]
+  declarations: [HomePage, AddStockButtonComponent, StockItemComponent, HeaderComponent, TotalAmountComponent]
 })
 export class HomePageModule {}

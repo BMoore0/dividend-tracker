@@ -32,4 +32,8 @@ export class HomePage {
     console.log("Home ticker: ", event.ticker);
   }
 
+  calculateTotals(){
+    console.log("SHIT");
+  }
+
 }
