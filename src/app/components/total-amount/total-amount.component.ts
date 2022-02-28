@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { StockInfo } from 'src/app/interfaces/IStockInfo';
 
 @Component({
@@ -12,17 +12,20 @@ export class TotalAmountComponent implements OnInit {
   private quarterlyReturn: number;
   private monthlyReturn: number;
 
-  @Input('stocks') stocks: StockInfo[];
+  @Input() stocks: StockInfo[];
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.calculateTotals();
-
   }
 
+  ngOnInit() {
+    this.calculateTotals();
+  }
+  
+
   calculateTotals() {
-    console.log("HIT");
     this.yearlyReturn = this.calculateYearlyReturn();
     this.quarterlyReturn = this.calculateQuarterlyReturn();
     this.monthlyReturn = this.calculateMonthlyReturn();

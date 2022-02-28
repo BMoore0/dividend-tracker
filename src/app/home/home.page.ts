@@ -17,6 +17,7 @@ export class HomePage {
     mnthReturn: 1,
     yrReturn: 16
   }
+
   constructor() {}
 
   ngOnInit () {
@@ -26,6 +27,7 @@ export class HomePage {
   addStockItem(event: StockInfo){
     //create stock item component and insert into dom
     this.stocks.push(event);
+    this.stocks = this.stocks.slice();
     console.log("THIS.STOCKS: ", this.stocks);
 
     console.log("HOME FUNCTION HIT");
