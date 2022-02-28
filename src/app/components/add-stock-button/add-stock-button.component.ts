@@ -34,6 +34,9 @@ export class AddStockButtonComponent implements OnInit {
       }
 
     }
+    else {
+      this.activateAddButton = false;
+    }
   }
 
   addStockItem () {
@@ -62,7 +65,7 @@ export class AddStockButtonComponent implements OnInit {
   }
   
   closeModal() {
-    this.stockSymbol = '';
+    this.stockSymbol = undefined;
     this.shareCount = undefined;
     this.isModalOpen = false;
   }
