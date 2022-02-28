@@ -25,7 +25,7 @@ ion-title.title-large {
   position: relative;
   left: 0;
   right: 0;
-  top: 14%;
+  display: inline;
   transform: translateY(-50%);
   width: 100%;
   
@@ -47,4 +47,13 @@ ion-title.title-large {
 
 #container a {
   text-decoration: none;
+}
+
+.stockList {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.body-content {
+  height: 80%;
 }

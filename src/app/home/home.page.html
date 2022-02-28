@@ -1,21 +1,21 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title size="large" class="title">
-      Dividend Tracker
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
+<div>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large" class="title">
+        Dividend Tracker
+      </ion-title>
     </ion-toolbar>
-  </ion-header> -->
+  
+      <ion-toolbar>
+        <header class="top"></header>
+      </ion-toolbar>
+  
+    <div id="container">
+      <div class="stockList">
+        <div *ngFor="let stock of stocks; index as i">
+          <stock-item [stockInfo] = "stock"></stock-item>
+        </div>
+      </div>
+      <add-stock-button (newStockItem)="addStockItem($event)"></add-stock-button>
+    </div>
+</div>
 
-  <div id="container">
-    <header class="top"></header>
-    <stock-item [stockInfo] = "stockInfo"></stock-item>
-    <add-stock-button></add-stock-button>
-  </div>
-</ion-content>
