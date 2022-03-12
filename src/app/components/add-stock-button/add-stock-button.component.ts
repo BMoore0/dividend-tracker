@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { IApiResponse } from 'src/app/interfaces/IApiResponse';
 import { StockInfo } from 'src/app/interfaces/IStockInfo';
 
 @Component({
@@ -23,32 +24,63 @@ export class AddStockButtonComponent implements OnInit {
     this.activateAddButton = false;
   }
 
-  validateInput() {
-    if(this.stockSymbol && this.shareCount){
-
-      if(this.stockSymbol.length > 0 && (this.shareCount > 0 && this.shareCount < 10000)) {
-        this.activateAddButton = true;
-      }
-      else {
-        this.activateAddButton = false;
-      }
-
+  validateShareCount(): boolean {
+    if((this.shareCount > 0 && this.shareCount < 10000)){
+      return true;
     }
     else {
-      this.activateAddButton = false;
+      return false;
+    }
+  }
+
+  validateStock(): boolean {
+    if(this.stockSymbol.length > 0) {
+      return true;
+    }
+    else {
+      return false;
     }
   }
 
   addStockItem () {
-    this.validateInput();
+    const isStockValid = this.validateStock();
+    const isShareCountValid = this.validateShareCount();
+
+    if(isStockValid && isShareCountValid) {
+      this.activateAddButton = true;
+    }
 
     if(this.activateAddButton) {
+      // mock api response object, real api call will be a get call using the ticker entered by user ie(this.stockSymbol): polygon dividend v3 endpoint
+      // will want to do the real api call before activating add button (check for OK response and result object not empty)
+      const mockApiResponse: IApiResponse = {
+        next_url: "dummy",
+        // results will have multiple objects in real implementation, grab the first object sorted by declaration date(most recent)
+        results: [{
+          cash_amount: .25,
+          declaration_date: new Date("2022-01-01"),
+          dividend_type: "CD",
+          ex_dividend_date: new Date("2022-01-01"),
+          frequency: 4,
+          pay_date: new Date("2022-01-01"),
+          record_date: new Date("2022-01-01"),
+          ticker: "MSFT"
+        }],
+        status: "OK"
+      }
+
+      const yearlyReturn = mockApiResponse.results[0].cash_amount * mockApiResponse.results[0].frequency * this.shareCount;
+      const quarterlyReturn = mockApiResponse.results[0].frequency === 4 ? mockApiResponse.results[0].cash_amount * this.shareCount : null;
+      const monthlyReturn = mockApiResponse.results[0].frequency === 12 ? mockApiResponse.results[0].cash_amount * this.shareCount : null;
+
+
+      // map stock info properties to ApiResponse properties
       const info: StockInfo = {
         ticker: this.stockSymbol,
         shareCount: this.shareCount,
-        yrReturn: 3,
-        qtrReturn: 2,
-        mnthReturn: 1
+        yrReturn: yearlyReturn,
+        qtrReturn: quarterlyReturn,
+        mnthReturn: monthlyReturn
     }
     this.newStockItem.emit(info);
     this.stockSymbol = '';
@@ -62,6 +94,7 @@ export class AddStockButtonComponent implements OnInit {
 
   openModal() {
     this.isModalOpen = true;
+    this.activateAddButton = false; 
   }
   
   closeModal() {

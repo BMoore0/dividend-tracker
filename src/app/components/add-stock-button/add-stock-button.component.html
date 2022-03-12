@@ -7,11 +7,11 @@
         <ion-content>
           
           <ion-item class="modal-input">
-            <ion-input type="text" (change)="validateInput()" required="true" maxlength="5" [(ngModel)]="stockSymbol" placeholder="Stock symbol"></ion-input>
+            <ion-input type="text" (change)="validateStock()" required="true" maxlength="5" [(ngModel)]="stockSymbol" placeholder="Stock symbol"></ion-input>
           </ion-item>
 
           <ion-item class="modal-input">
-            <ion-input type="number" required="true" (change)="validateInput()" [(ngModel)]="shareCount" max="5" min="1" placeholder="Number of shares"></ion-input>
+            <ion-input type="number" required="true" (change)="validateShareCount()" [(ngModel)]="shareCount" max="5" min="1" placeholder="Number of shares"></ion-input>
           </ion-item>
 
           <div class="modal-buttons">
