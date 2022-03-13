@@ -56,9 +56,13 @@ export class AddStockButtonComponent implements OnInit {
     }
 
     if(this.activateAddButton) {
-      const yearlyReturn = stockInfo.cash_amount * stockInfo.frequency * this.shareCount;
-      const quarterlyReturn = stockInfo.frequency === 4 ? stockInfo.cash_amount * this.shareCount : null;
-      const monthlyReturn = stockInfo.frequency === 12 ? stockInfo.cash_amount * this.shareCount : null;
+      // const yearlyReturn = stockInfo.cash_amount * stockInfo.frequency * this.shareCount;
+      // const quarterlyReturn = stockInfo.frequency === 4 ? stockInfo.cash_amount * this.shareCount : null;
+      // const monthlyReturn = stockInfo.frequency === 12 ? stockInfo.cash_amount * this.shareCount : null;
+
+      const yearlyReturn = Math.round(((stockInfo.cash_amount * stockInfo.frequency * this.shareCount) + Number.EPSILON) * 100) / 100;
+      const quarterlyReturn = stockInfo.frequency === 4 ? Math.round(((stockInfo.cash_amount * this.shareCount) + Number.EPSILON) * 100) / 100 : null;
+      const monthlyReturn = stockInfo.frequency === 12 ? Math.round(((stockInfo.cash_amount * this.shareCount) + Number.EPSILON) * 100) / 100 : null;
 
       // map stock info properties to ApiResponse properties
       const info: StockInfo = {
