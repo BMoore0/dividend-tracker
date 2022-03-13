@@ -1,7 +1,7 @@
-import { StockResults } from "./IStockResults";
+import { StockResult } from "./IStockResult";
 
 export interface IApiResponse {
     next_url: string,
-    results: StockResults[],
+    results: StockResult[],
     status: string
 }

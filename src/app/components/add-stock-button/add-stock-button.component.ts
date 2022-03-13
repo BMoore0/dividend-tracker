@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IApiResponse } from 'src/app/interfaces/IApiResponse';
 import { StockInfo } from 'src/app/interfaces/IStockInfo';
+import { StockResult } from 'src/app/interfaces/IStockResult';
+import { apiKey } from '../../../../config';
+const axios = require('axios').default;
 
 @Component({
   selector: 'add-stock-button',
@@ -33,46 +36,29 @@ export class AddStockButtonComponent implements OnInit {
     }
   }
 
-  validateStock(): boolean {
-    if(this.stockSymbol.length > 0) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+  async addStockItem () {
+    let stockInfo: StockResult;
 
-  addStockItem () {
-    const isStockValid = this.validateStock();
-    const isShareCountValid = this.validateShareCount();
+    await axios({
+      method: 'get',
+      url: `https://api.polygon.io/v3/reference/dividends?ticker=${this.stockSymbol.toUpperCase()}&apiKey=${apiKey}`,
+      responseType: 'stream'
+    })
+      .then(function (response) {
+        stockInfo = response.data.results[0];
+        console.log("stock info: ", stockInfo);
+      })
 
-    if(isStockValid && isShareCountValid) {
+    const isShareCountValid = (this.shareCount > 0 && this.shareCount < 10000)? true: false;
+
+    if(stockInfo && isShareCountValid) {
       this.activateAddButton = true;
     }
 
     if(this.activateAddButton) {
-      // mock api response object, real api call will be a get call using the ticker entered by user ie(this.stockSymbol): polygon dividend v3 endpoint
-      // will want to do the real api call before activating add button (check for OK response and result object not empty)
-      const mockApiResponse: IApiResponse = {
-        next_url: "dummy",
-        // results will have multiple objects in real implementation, grab the first object sorted by declaration date(most recent)
-        results: [{
-          cash_amount: .25,
-          declaration_date: new Date("2022-01-01"),
-          dividend_type: "CD",
-          ex_dividend_date: new Date("2022-01-01"),
-          frequency: 4,
-          pay_date: new Date("2022-01-01"),
-          record_date: new Date("2022-01-01"),
-          ticker: "MSFT"
-        }],
-        status: "OK"
-      }
-
-      const yearlyReturn = mockApiResponse.results[0].cash_amount * mockApiResponse.results[0].frequency * this.shareCount;
-      const quarterlyReturn = mockApiResponse.results[0].frequency === 4 ? mockApiResponse.results[0].cash_amount * this.shareCount : null;
-      const monthlyReturn = mockApiResponse.results[0].frequency === 12 ? mockApiResponse.results[0].cash_amount * this.shareCount : null;
-
+      const yearlyReturn = stockInfo.cash_amount * stockInfo.frequency * this.shareCount;
+      const quarterlyReturn = stockInfo.frequency === 4 ? stockInfo.cash_amount * this.shareCount : null;
+      const monthlyReturn = stockInfo.frequency === 12 ? stockInfo.cash_amount * this.shareCount : null;
 
       // map stock info properties to ApiResponse properties
       const info: StockInfo = {

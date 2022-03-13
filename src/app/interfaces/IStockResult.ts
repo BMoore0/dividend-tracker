@@ -1,4 +1,4 @@
-export interface StockResults {
+export interface StockResult {
     cash_amount: number,
     declaration_date: Date,
     dividend_type: string,
