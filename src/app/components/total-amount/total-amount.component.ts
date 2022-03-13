@@ -36,7 +36,7 @@ export class TotalAmountComponent implements OnInit {
     for(const stock in this.stocks) {
       total += this.stocks[stock].yrReturn;
     }
-    return total;
+    return Math.round((total + Number.EPSILON) * 100) / 100;
   }
 
   calculateMonthlyReturn(): number {
@@ -44,7 +44,7 @@ export class TotalAmountComponent implements OnInit {
     for(const stock in this.stocks) {
       total += this.stocks[stock].mnthReturn;
     }
-    return total;
+    return Math.round((total + Number.EPSILON) * 100) / 100;
   }
 
   calculateQuarterlyReturn(): number {
@@ -52,7 +52,7 @@ export class TotalAmountComponent implements OnInit {
     for(const stock in this.stocks) {
       total += this.stocks[stock].qtrReturn;
     }
-    return total;
+    return Math.round((total + Number.EPSILON) * 100) / 100;
   }
 
 }
