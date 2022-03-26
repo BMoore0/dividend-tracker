@@ -16,7 +16,7 @@ import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
   IonicStorageModule.forRoot({
     name: 'myStockList',
-    driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB, Drivers.LocalStorage]
+    driverOrder: [Drivers.LocalStorage, Drivers.IndexedDB]
   })],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
