@@ -10,13 +10,7 @@ import { StockInfo } from '../interfaces/IStockInfo';
 export class HomePage {
   private stocks: StockInfo[];
 
-  stockInfo: StockInfo = {
-    ticker: "MSFT",
-    shareCount: 50,
-    qtrReturn: 4,
-    mnthReturn: 1,
-    yrReturn: 16
-  }
+  stockInfo: StockInfo;
 
   constructor() {}
 
