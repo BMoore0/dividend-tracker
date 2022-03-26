@@ -19,6 +19,8 @@ export class StockItemComponent implements OnInit {
   private mnthReturn: number;
   private yrReturn: number;
 
+  private stocksNotEmpty: boolean = false;
+
   constructor() { }
 
   
@@ -30,6 +32,7 @@ export class StockItemComponent implements OnInit {
     this.yrReturn = this.stockInfo.yrReturn;
     this.monthlyReturnExists = this.mnthReturn === null ?  false : true;
     this.quarterlyReturnExists = this.qtrReturn === null ?  false : true;
+    this.stocksNotEmpty = this.stockInfo ? true : false;
   }
 
 }

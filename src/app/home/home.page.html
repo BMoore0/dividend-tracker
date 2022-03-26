@@ -8,7 +8,7 @@
     <header class="top"></header>
       
     <div id="container">
-      <div *ngIf="stockInfo" class="stockList">
+      <div class="stockList">
         <div *ngFor="let stock of stocks; index as i">
           <stock-item [stockInfo] = "stock"></stock-item>
         </div>
