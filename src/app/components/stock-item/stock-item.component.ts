@@ -25,11 +25,11 @@ export class StockItemComponent implements OnInit {
 
   
   ngOnInit() {
-    this.ticker = this.stockInfo.ticker;
-    this.shareCount = this.stockInfo.shareCount;
-    this.qtrReturn = this.stockInfo.qtrReturn? this.stockInfo.qtrReturn : null;
-    this.mnthReturn = this.stockInfo.mnthReturn? this.stockInfo.mnthReturn : null;
-    this.yrReturn = this.stockInfo.yrReturn;
+    this.ticker = this.stockInfo?.ticker;
+    this.shareCount = this.stockInfo?.shareCount;
+    this.qtrReturn = this.stockInfo?.qtrReturn;
+    this.mnthReturn = this.stockInfo?.mnthReturn;
+    this.yrReturn = this.stockInfo?.yrReturn;
     this.monthlyReturnExists = this.mnthReturn === null ?  false : true;
     this.quarterlyReturnExists = this.qtrReturn === null ?  false : true;
     this.stocksNotEmpty = this.stockInfo ? true : false;
