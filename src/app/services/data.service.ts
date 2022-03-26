@@ -9,7 +9,7 @@ import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 export class DataService {
 
   constructor(private storage: Storage) {
-    this.init();
+    // this.init();
   }
 
   async init() {
@@ -17,8 +17,8 @@ export class DataService {
     await this.storage.create();
   }
 
-  getData() {
-    return this.storage.get('stockList') || [];
+  async getData() {
+    return await this.storage.get('stockList') || [];
   }
 
   async addData(stock: StockInfo) {
