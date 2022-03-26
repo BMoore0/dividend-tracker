@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StockInfo } from '../interfaces/IStockInfo';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,25 @@ export class HomePage {
 
   stockInfo: StockInfo;
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
-  ngOnInit () {
-    this.stocks = [this.stockInfo]; //maybe use file system library to load saved stock list?
+  async ngOnInit () {
+    this.loadStocks();
+    //this.stocks = await this.dataService.getData();
+    //this.stocks = [this.stockInfo]; //maybe use file system library to load saved stock list?
   }
 
-  addStockItem(event: StockInfo){
+  async loadStocks() {
+    this.stocks = await this.dataService.getData();
+  }
+
+  async addStockItem(event: StockInfo){
     //create stock item component and insert into dom
-    this.stocks.push(event);
-    this.stocks = this.stocks.slice();
+    // this.stocks?.push(event);
+    // this.stocks = this.stocks?.slice();
+
+    await this.dataService.addData(event);
+    this.loadStocks();
   }
 
 }
