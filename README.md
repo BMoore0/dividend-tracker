@@ -24,3 +24,7 @@ to the value of your polygon API Key.
 
 - You can also drag and drop the .apk file from your computers storage to your connected phone
 and install the app from your phone's file system
+
+  - You can generate the .apk file in Android studio under the build tab
+
+  - The apk file(app-debug.apk) should be generated in the path: ./android/app/build/outputs/apk/debug
