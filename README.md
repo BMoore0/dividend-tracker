@@ -21,3 +21,6 @@ to the value of your polygon API Key.
 - Run "npx cap open android"
 
 - Press Run in Android Studio
+
+- You can also drag and drop the .apk file from your computers storage to your connected phone
+and install the app from your phone's file system
