@@ -52,9 +52,6 @@ export class StockItemComponent implements OnInit {
       this.stockInfo.mnthReturn = this.stockInfo.frequency === 12 ? Math.round(((this.stockInfo.cash_amount * this.newShareCount) + Number.EPSILON) * 100) / 100 : null;
     }
 
-    console.log('this stonk now: ', this.stockInfo);
-    console.log('yr return: ', this.yrReturn);
-
     await this.newStockInfo.emit(this.stockInfo);
     this.openEditModal = false;
   }
