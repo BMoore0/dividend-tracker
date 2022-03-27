@@ -70,7 +70,9 @@ export class AddStockButtonComponent implements OnInit {
         shareCount: this.shareCount,
         yrReturn: yearlyReturn,
         qtrReturn: quarterlyReturn,
-        mnthReturn: monthlyReturn
+        mnthReturn: monthlyReturn,
+        frequency: stockInfo.frequency,
+        cash_amount: stockInfo.cash_amount
     }
     this.newStockItem.emit(info);
     this.stockSymbol = '';

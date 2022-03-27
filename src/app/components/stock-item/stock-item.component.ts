@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { StockInfo } from 'src/app/interfaces/IStockInfo';
 
 @Component({
@@ -9,6 +9,8 @@ import { StockInfo } from 'src/app/interfaces/IStockInfo';
 
 export class StockItemComponent implements OnInit {
 
+  @Output() newStockInfo = new EventEmitter<StockInfo>();
+  @Output() stockToRemove = new EventEmitter<StockInfo>();
   @Input('stockInfo') stockInfo: StockInfo;
 
   private monthlyReturnExists;
@@ -20,6 +22,8 @@ export class StockItemComponent implements OnInit {
   private yrReturn: number;
 
   private stocksNotEmpty: boolean = false;
+  private openEditModal: boolean = false;
+  private newShareCount: number;
 
   constructor() { }
 
@@ -33,6 +37,28 @@ export class StockItemComponent implements OnInit {
     this.monthlyReturnExists = this.mnthReturn === null ?  false : true;
     this.quarterlyReturnExists = this.qtrReturn === null ?  false : true;
     this.stocksNotEmpty = this.stockInfo ? true : false;
+    this.newShareCount = this.shareCount;
+  }
+
+  editStock() {
+    this.openEditModal = true;
+  }
+
+  async saveStockItem() {
+    if(this.newShareCount > 0 && this.newShareCount < 10000) {
+      this.stockInfo.shareCount = this.newShareCount;
+      this.stockInfo.yrReturn = Math.round(((this.stockInfo.cash_amount * this.stockInfo.frequency * this.newShareCount) + Number.EPSILON) * 100) / 100;
+      this.stockInfo.qtrReturn = this.stockInfo.frequency === 4 ? Math.round(((this.stockInfo.cash_amount * this.newShareCount) + Number.EPSILON) * 100) / 100 : null;
+      this.stockInfo.mnthReturn = this.stockInfo.frequency === 12 ? Math.round(((this.stockInfo.cash_amount * this.newShareCount) + Number.EPSILON) * 100) / 100 : null;
+    }
+
+    await this.newStockInfo.emit(this.stockInfo);
+    this.openEditModal = false;
+  }
+
+  async deleteStockItem() {
+    await this.stockToRemove.emit(this.stockInfo);
+    this.openEditModal = false;
   }
 
 }

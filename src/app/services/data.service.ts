@@ -18,6 +18,7 @@ export class DataService {
   }
 
   async getData() {
+    //await this.storage.remove('stockList');
     return await this.storage.get('stockList') || [];
   }
 
@@ -25,5 +26,10 @@ export class DataService {
     const storedData = await this.storage.get('stockList') || [];
     storedData.push(stock);
     await this.storage.set('stockList', storedData);
+  }
+
+  async updateData(stockList: StockInfo[]) {
+    console.log('ud stock list: ', stockList);
+    await this.storage.set('stockList', stockList);
   }
 }

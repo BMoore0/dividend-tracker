@@ -10,7 +10,7 @@
     <div id="container">
       <div class="stockList">
         <div *ngFor="let stock of stocks; index as i">
-          <stock-item [stockInfo] = "stock"></stock-item>
+          <stock-item [stockInfo] = "stock" (newStockInfo)="updateStockList($event)" (stockToRemove)="removeFromStockList($event)"></stock-item>
         </div>
       </div>
 

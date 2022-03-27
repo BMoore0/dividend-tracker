@@ -17,8 +17,6 @@ export class HomePage {
 
   async ngOnInit () {
     this.loadStocks();
-    //this.stocks = await this.dataService.getData();
-    //this.stocks = [this.stockInfo]; //maybe use file system library to load saved stock list?
   }
 
   async loadStocks() {
@@ -26,12 +24,33 @@ export class HomePage {
   }
 
   async addStockItem(event: StockInfo){
-    //create stock item component and insert into dom
-    // this.stocks?.push(event);
-    // this.stocks = this.stocks?.slice();
-
     await this.dataService.addData(event);
     this.loadStocks();
   }
+
+  async updateStockList(modifiedStock: StockInfo) {
+    for (const stock in this.stocks) {
+      if(modifiedStock.ticker === this.stocks[stock].ticker) {
+        this.stocks[stock] = modifiedStock;
+      }
+    }
+    
+    await this.dataService.updateData(this.stocks);
+
+    this.stocks = await this.dataService.getData();
+    location.reload();
+  }
+
+  async removeFromStockList(stockToRemove: StockInfo) {
+    this.stocks = this.stocks.filter(function(stock: StockInfo) {
+      return stock.ticker !== stockToRemove.ticker;
+    });
+
+    await this.dataService.updateData(this.stocks);
+    location.reload();
+
+    
+  }
+  
 
 }
