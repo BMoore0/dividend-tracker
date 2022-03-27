@@ -5,6 +5,7 @@
 - This file should have a variable named "apiKey", which you can set
 to the value of your polygon API Key.
 - You can get your api key at https://polygon.io/docs/stocks/getting-started
+- Run npm install
 
 ## In Browser
 
