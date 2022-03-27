@@ -35,4 +35,8 @@ export class HomePage {
     this.loadStocks();
   }
 
+  async updateStockList(modifiedStock: StockInfo) {
+    console.log('modified stock: ', modifiedStock);
+  }
+
 }

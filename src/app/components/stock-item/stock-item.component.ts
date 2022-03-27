@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { StockInfo } from 'src/app/interfaces/IStockInfo';
 
 @Component({
@@ -9,6 +9,7 @@ import { StockInfo } from 'src/app/interfaces/IStockInfo';
 
 export class StockItemComponent implements OnInit {
 
+  @Output() newStockInfo = new EventEmitter<StockInfo>();
   @Input('stockInfo') stockInfo: StockInfo;
 
   private monthlyReturnExists;
@@ -44,8 +45,18 @@ export class StockItemComponent implements OnInit {
 
   saveStockItem() {
     //const isShareCountValid = (this.shareCount > 0 && this.shareCount < 10000)? true: false;
-    console.log('nsc', this.newShareCount);
+    let modifiedStock: StockInfo;
+    if(this.newShareCount > 0 && this.newShareCount < 10000) {
+      this.stockInfo.shareCount = this.newShareCount;
+      this.stockInfo.yrReturn = Math.round(((this.stockInfo.cash_amount * this.stockInfo.frequency * this.newShareCount) + Number.EPSILON) * 100) / 100;
+      this.stockInfo.qtrReturn = this.stockInfo.frequency === 4 ? Math.round(((this.stockInfo.cash_amount * this.newShareCount) + Number.EPSILON) * 100) / 100 : null;
+      this.stockInfo.mnthReturn = this.stockInfo.frequency === 12 ? Math.round(((this.stockInfo.cash_amount * this.newShareCount) + Number.EPSILON) * 100) / 100 : null;
+    }
 
+    console.log('this stonk now: ', this.stockInfo);
+    console.log('yr return: ', this.yrReturn);
+
+    this.newStockInfo.emit(this.stockInfo);
     this.openEditModal = false;
   }
 
