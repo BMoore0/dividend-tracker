@@ -10,6 +10,7 @@ import { StockInfo } from 'src/app/interfaces/IStockInfo';
 export class StockItemComponent implements OnInit {
 
   @Output() newStockInfo = new EventEmitter<StockInfo>();
+  @Output() stockToRemove = new EventEmitter<StockInfo>();
   @Input('stockInfo') stockInfo: StockInfo;
 
   private monthlyReturnExists;
@@ -58,8 +59,8 @@ export class StockItemComponent implements OnInit {
     this.openEditModal = false;
   }
 
-  deleteStockItem() {
-
+  async deleteStockItem() {
+    await this.stockToRemove.emit(this.stockInfo);
     this.openEditModal = false;
   }
 

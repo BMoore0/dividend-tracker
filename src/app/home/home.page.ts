@@ -48,6 +48,29 @@ export class HomePage {
     this.stocks = await this.dataService.getData();
     location.reload();
   }
+
+  async removeFromStockList(stockToRemove: StockInfo) {
+    console.log('stock to remove: ', stockToRemove);
+    console.log('this stocks: ', this.stocks);
+    // for (const stock in this.stocks) {
+    //   if(stockToRemove.ticker === this.stocks[stock].ticker) {
+    //     //delete this.stocks[stock];
+    //     this.stocks.filter(stock => stock.ticker !== stockToRemove.ticker);
+    //     await this.dataService.updateData(this.stocks);
+    //     return;
+    //   }
+    //   return;
+    // }
+    this.stocks = this.stocks.filter(function(stock: StockInfo) {
+      return stock.ticker !== stockToRemove.ticker;
+    });
+
+    console.log('new stonkes: ', this.stocks);
+    await this.dataService.updateData(this.stocks);
+    location.reload();
+
+    
+  }
   
 
 }

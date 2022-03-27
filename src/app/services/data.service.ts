@@ -18,6 +18,7 @@ export class DataService {
   }
 
   async getData() {
+    //await this.storage.remove('stockList');
     return await this.storage.get('stockList') || [];
   }
 
