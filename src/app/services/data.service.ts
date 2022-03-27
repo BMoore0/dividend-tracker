@@ -26,4 +26,9 @@ export class DataService {
     storedData.push(stock);
     await this.storage.set('stockList', storedData);
   }
+
+  async updateData(stockList: StockInfo[]) {
+    console.log('ud stock list: ', stockList);
+    await this.storage.set('stockList', stockList);
+  }
 }

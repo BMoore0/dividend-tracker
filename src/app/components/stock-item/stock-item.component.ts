@@ -43,9 +43,7 @@ export class StockItemComponent implements OnInit {
     this.openEditModal = true;
   }
 
-  saveStockItem() {
-    //const isShareCountValid = (this.shareCount > 0 && this.shareCount < 10000)? true: false;
-    let modifiedStock: StockInfo;
+  async saveStockItem() {
     if(this.newShareCount > 0 && this.newShareCount < 10000) {
       this.stockInfo.shareCount = this.newShareCount;
       this.stockInfo.yrReturn = Math.round(((this.stockInfo.cash_amount * this.stockInfo.frequency * this.newShareCount) + Number.EPSILON) * 100) / 100;
@@ -56,7 +54,7 @@ export class StockItemComponent implements OnInit {
     console.log('this stonk now: ', this.stockInfo);
     console.log('yr return: ', this.yrReturn);
 
-    this.newStockInfo.emit(this.stockInfo);
+    await this.newStockInfo.emit(this.stockInfo);
     this.openEditModal = false;
   }
 

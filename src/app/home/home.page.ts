@@ -26,17 +26,28 @@ export class HomePage {
     this.stocks = await this.dataService.getData();
   }
 
-  async addStockItem(event: StockInfo){
-    //create stock item component and insert into dom
-    // this.stocks?.push(event);
-    // this.stocks = this.stocks?.slice();
+  // async ngOnChanges() {
+  //   await this.loadStocks();
+  // }
 
+  async addStockItem(event: StockInfo){
     await this.dataService.addData(event);
     this.loadStocks();
   }
 
   async updateStockList(modifiedStock: StockInfo) {
-    console.log('modified stock: ', modifiedStock);
+    for (const stock in this.stocks) {
+      if(modifiedStock.ticker === this.stocks[stock].ticker) {
+        this.stocks[stock] = modifiedStock;
+      }
+    }
+    
+    await this.dataService.updateData(this.stocks);
+    //await this.loadStocks();
+
+    this.stocks = await this.dataService.getData();
+    location.reload();
   }
+  
 
 }
