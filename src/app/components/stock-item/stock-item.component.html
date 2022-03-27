@@ -1,4 +1,25 @@
-<div *ngIf="stocksNotEmpty" class="container">
+<div *ngIf="stocksNotEmpty" class="container" (click)="editStock()">
+  <ion-modal [isOpen]="openEditModal" id="addStockModal">
+    <ng-template>
+      <ion-content>
+        
+        <ion-item class="modal-input">
+          <ion-label>{{ticker}}</ion-label>
+        </ion-item>
+
+        <ion-item class="modal-input">
+          <ion-input type="number" required="true" [(ngModel)]="newShareCount" max="5" min="1" placeholder="{{shareCount}}"></ion-input>
+        </ion-item>
+
+        <div class="modal-buttons">
+          <ion-button color="danger" (click)="deleteStockItem()">Delete</ion-button>
+          <ion-button color="success" (click)="saveStockItem()">Save</ion-button>
+        </div>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  
   <ion-item color="dark" class="stock-item">
     <ion-label> 
       {{ticker}}

@@ -4,4 +4,6 @@ export interface StockInfo {
     qtrReturn?: number,
     mnthReturn?: number,
     yrReturn: number,
+    frequency: number,
+    cash_amount: number
 }

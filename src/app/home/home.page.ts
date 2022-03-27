@@ -17,6 +17,7 @@ export class HomePage {
 
   async ngOnInit () {
     this.loadStocks();
+    console.log('stonks', this.stocks);
     //this.stocks = await this.dataService.getData();
     //this.stocks = [this.stockInfo]; //maybe use file system library to load saved stock list?
   }

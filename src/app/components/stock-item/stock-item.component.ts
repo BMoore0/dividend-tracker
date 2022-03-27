@@ -20,6 +20,8 @@ export class StockItemComponent implements OnInit {
   private yrReturn: number;
 
   private stocksNotEmpty: boolean = false;
+  private openEditModal: boolean = false;
+  private newShareCount: number;
 
   constructor() { }
 
@@ -33,6 +35,23 @@ export class StockItemComponent implements OnInit {
     this.monthlyReturnExists = this.mnthReturn === null ?  false : true;
     this.quarterlyReturnExists = this.qtrReturn === null ?  false : true;
     this.stocksNotEmpty = this.stockInfo ? true : false;
+    this.newShareCount = this.shareCount;
+  }
+
+  editStock() {
+    this.openEditModal = true;
+  }
+
+  saveStockItem() {
+    //const isShareCountValid = (this.shareCount > 0 && this.shareCount < 10000)? true: false;
+    console.log('nsc', this.newShareCount);
+
+    this.openEditModal = false;
+  }
+
+  deleteStockItem() {
+
+    this.openEditModal = false;
   }
 
 }
