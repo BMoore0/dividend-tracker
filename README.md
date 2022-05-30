@@ -1,4 +1,5 @@
 # dividend-tracker
+Android app to easily track dividend returns making use of Polygon's Stock API
 
 # Running Locally
 - You will need to create a config.ts file in the root directory
